@@ -29,8 +29,8 @@ jobs:
           rm -rf index.m3u8
           rm -rf *.ts
           wget -nv -T 15 -c "${{ github.event.inputs.commit_message }}" -O video
-          ffmpeg -i video -map 0 -map -0:s -c:v libx264 -crf 18 -preset veryfast -c:a aac -b:a 192k -hls_time 6 -hls_playlist_type vod -f hls index.m3u8
-          # ffmpeg -i video -map 0 -map -0:s -c copy -start_number 0 -hls_time 6 -hls_list_size 0 -f hls index.m3u8
+          #ffmpeg -i video -map 0 -map -0:s -c:v libx264 -crf 18 -preset veryfast -c:a aac -b:a 192k -hls_time 6 -hls_playlist_type vod -f hls index.m3u8
+          ffmpeg -i video -map 0 -map -0:s -c copy -start_number 0 -hls_time 3 -hls_list_size 0 -f hls index.m3u8
           rm -rf video
           git config --global core.compression 1
           git config --global http.postBuffer 524288000
